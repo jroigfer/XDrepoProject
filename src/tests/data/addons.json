@@ -1,0 +1,107 @@
+[
+	{
+		"name": "indigo",
+		"repo": "tva-release-repo",
+		"addonFolder": "plugin.program.indigo",
+		"addonRepoFolder": "",
+		"extraInfo": ""
+	},
+	{
+		"name": "youtube",
+		"repo": "jdf76-repository",
+		"addonFolder": "unofficial/zips/plugin.video.youtube",
+		"addonRepoFolder": "repository/unofficial/zips/repository.yt.unofficial",
+		"extraInfo": ""
+	},
+	{
+		"name": "f4mTester",
+		"repo": "tva-resolvers-repo",
+		"addonFolder": "zips/plugin.video.f4mTester",
+		"addonRepoFolder": "",
+		"extraInfo": ""
+	},
+	{
+		"name": "F4mProxy",
+		"repo": "tva-resolvers-repo",
+		"addonFolder": "zips/script.video.F4mProxy",
+		"addonRepoFolder": "",
+		"extraInfo": ""
+	},
+	{
+		"name": "plexus",
+		"repo": "tva-release-repo",
+		"addonFolder": "program.plexus",
+		"addonRepoFolder": "",
+		"extraInfo": ""
+	},
+	{
+		"name": "plexusStreams",
+		"repo": "kodiadictos",
+		"addonFolder": "http://kodiadictos.org/kodiadictos/Addons%20Deportes/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"plugin.video.plexus-streams;\">"
+	},
+	{
+		"name": "alfaAddon",
+		"repo": "alfa-repo",
+		"addonFolder": "plugin.video.alfa",
+		"addonRepoFolder": "repository.alfa-addon",
+		"extraInfo": ""
+	},
+	{
+		"name": "tvalacarta",
+		"repo": "lrevlist",
+		"addonFolder": "plugin.video.tvalacarta",
+		"addonRepoFolder": "",
+		"extraInfo": ""
+	},
+	{
+		"name": "balandro",
+		"repo": "lrevlist",
+		"addonFolder": "",
+		"addonRepoFolder": "repository.balandro",
+		"extraInfo": ""
+	},
+	{
+		"name": "cristalAzul",
+		"repo": "kodileia",
+		"addonFolder": "https://fuentekodileia.github.io/addons/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"plugin.video.cristalazul-;\">"
+	},
+	{
+		"name": "palantir",
+		"repo": "palantiraddon-repo",
+		"addonFolder": "Palantir/plugin.video.palantir",
+		"addonRepoFolder": "Palantir/plugin.video.palantir",
+		"extraInfo": ""
+	},
+	{
+		"name": "quasar",
+		"repo": "kodileia",
+		"addonFolder": "https://fuentekodileia.github.io/quassar-torrentin-elementum/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"plugin.video.quasar-;\">"
+	},
+	{
+		"name": "quasarBurst",
+		"repo": "kodileia",
+		"addonFolder": "https://fuentekodileia.github.io/quassar-torrentin-elementum/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"script.quasar.burst-;\">"
+	},
+	{
+		"name": "repositoryXbmchub",
+		"repo": "tva-release-repo",
+		"addonFolder": "",
+		"addonRepoFolder": "repository.xbmchub",
+		"extraInfo": ""
+	},
+	{
+		"name": "scriptPlexusPatcher",
+		"repo": "kodiadictos",
+		"addonFolder": "http://kodiadictos.org/kodiadictos/Programas/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"script.plexus.patcher;\">"
+	}
+]

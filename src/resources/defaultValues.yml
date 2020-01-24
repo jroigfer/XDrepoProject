@@ -1,0 +1,6 @@
+appName: repoXusmenKodi
+logLevel: INFO
+
+paths:
+  gitReposTargetFolder: /mnt/comun/temp/kodirepotest/
+  definitiveXusmenRepoFodler: /mnt/comun/temp/xusmenRepoTest/
