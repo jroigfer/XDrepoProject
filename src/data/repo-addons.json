@@ -58,5 +58,17 @@
 		"repo": "https://fuentekodileia.github.io",
 		"folder": "kodileia",
 		"git": false
+	},
+	{
+		"name": "kodileia-github",
+		"repo": "https://github.com/fuentekodileia/fuentekodileia.github.io.git",
+		"folder": "kodileia-github",
+		"git": false
+	},
+	{
+		"name": "luar",
+		"repo": "https://luarsource.github.io/Fuente/",
+		"folder": "luar",
+		"git": false
 	}
 ]

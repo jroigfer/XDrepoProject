@@ -35,13 +35,6 @@
 		"extraInfo": ""
 	},
 	{
-		"name": "plexusStreams",
-		"repo": "kodiadictos",
-		"addonFolder": "http://kodiadictos.org/kodiadictos/Addons Deportes/",
-		"addonRepoFolder": "",
-		"extraInfo": "<li><a href=\"plugin.video.plexus-streams;\">"
-	},
-	{
 		"name": "alfaAddon",
 		"repo": "alfa-repo",
 		"addonFolder": "plugin.video.alfa",
@@ -77,13 +70,6 @@
 		"extraInfo": ""
 	},
 	{
-		"name": "quasar",
-		"repo": "kodiadictos",
-		"addonFolder": "http://kodiadictos.org/kodiadictos/Torrentin-Quasar-Elementum/",
-		"addonRepoFolder": "",
-		"extraInfo": "<li><a href=\"plugin.video.quasar-0.9.78;\">"
-	},
-	{
 		"name": "quasarBurst",
 		"repo": "kodileia",
 		"addonFolder": "https://fuentekodileia.github.io/quassar-torrentin-elementum/",
@@ -98,7 +84,28 @@
 		"extraInfo": ""
 	},
 	{
-		"name": "scriptPlexusPatcher",
+		"name": "luar",
+		"repo": "luar",
+		"addonFolder": "http://luarsource.github.io/Fuente/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"script.luar-;\">"
+	},
+	{
+		"name": "1x2",
+		"repo": "kodiadictos",
+		"addonFolder": "http://kodiadictos.org/kodiadictos/Addons Deportes/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"plugin.video.1x2;\">"
+	},
+	{
+		"name": "plexus-streams",
+		"repo": "kodiadictos",
+		"addonFolder": "http://kodiadictos.org/kodiadictos/Addons Deportes/",
+		"addonRepoFolder": "",
+		"extraInfo": "<li><a href=\"plugin.video.plexus-streams;\">"
+	},
+	{
+		"name": "plexus-patcher",
 		"repo": "kodiadictos",
 		"addonFolder": "http://kodiadictos.org/kodiadictos/Programas/",
 		"addonRepoFolder": "",

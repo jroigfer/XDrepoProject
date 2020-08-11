@@ -1,5 +1,8 @@
+from json import load
+
 from dto.repo import Repo
 from dto.kodiAddon import KodiAddon
+from services.xmlAddonGenerator import Generator
 from zipfile import ZipFile
 import json, sys, os, git, urllib.request, urllib.parse, wget, glob, zipfile, shutil, logging, logging.config
 
@@ -13,7 +16,8 @@ logger.info('Logging actived!')
 rootDir = os.path.dirname(os.path.abspath(__file__)) # This is your Project Root
 reposGitTargetFolder = "/mnt/comun/temp/kodirepotest/"
 addonNoGitTargetFolder = "/mnt/comun/temp/kodiaddontest/"
-xDevRepoTargetFolder = "/mnt/comun/temp/xdevrepotest/"
+xDevRepoTargetFolderTemp = "/mnt/comun/temp/xdevrepotest/"
+xDevRepoTargetFolder = "/mnt/comun/git-repos/github/XDKodiRepo/"
 
 def createRepoXD():
     #clean addon no git temp folder
@@ -22,7 +26,7 @@ def createRepoXD():
     logging.info('Clean temporal folders')
     cleanFolder(reposGitTargetFolder)
     cleanFolder(addonNoGitTargetFolder)
-    cleanFolder(xDevRepoTargetFolder)
+    cleanFolder(xDevRepoTargetFolderTemp)
 
     logging.info('Getting Git repos for addons first')
     getGitReposContent()
@@ -48,7 +52,11 @@ def getGitReposContent():
     for repo in getRepos():
         if repo['git']:
             logging.info("git repo " + repo['name'] + ", cloning...")
-            git.Repo.clone_from(repo['repo'], reposGitTargetFolder + repo['name'])
+            try:
+                git.Repo.clone_from(repo['repo'], reposGitTargetFolder + repo['name'])
+            except Exception as e:
+                # error perform git clone to repo
+                logger.error("Calling to clone git repo %s failed" % (repo['repo'], e,))
         else:
             logging.info("no git: " + repo['name'])
 
@@ -63,17 +71,21 @@ def dowloadNoGitAddons():
                 urldef = addon['addonFolder'].replace(" ",rep)
             else:
                 urldef = addon['addonFolder']
-            fp = urllib.request.urlopen(urldef)
-            #fp = urllib.request.urlopen(urllib.parse.urlparse(element['addonFolder']))
-            bytesPage = fp.read()
-            pageStr = bytesPage.decode("utf8")
-            fp.close()
+            try:
+                fp = urllib.request.urlopen(urldef)
+                #fp = urllib.request.urlopen(urllib.parse.urlparse(element['addonFolder']))
+                bytesPage = fp.read()
+                pageStr = bytesPage.decode("utf8")
+                fp.close()
 
-            urlAddon = getHrefAddon(addon['addonFolder'],pageStr,addon['extraInfo'])
-            logging.info("addon href content extracted: " + urlAddon)
+                urlAddon = getHrefAddon(addon['addonFolder'],pageStr,addon['extraInfo'])
+                logging.info("addon href content extracted: " + urlAddon)
 
-            #OK
-            wget.download(urlAddon,out=addonNoGitTargetFolder)
+                #OK
+                wget.download(urlAddon,out=addonNoGitTargetFolder)
+            except Exception as e:
+                # error calling repo no git url
+                logger.info("Call to %s failed" % (urldef, e,))
         else:
             logging.info("git addon " + addon['name'] + ", nothing to do")
 
@@ -124,15 +136,15 @@ def moveGitAddonToXDRepo():
     for addon in getAddons():
         if addon['extraInfo'] == "":
             if not addon['addonFolder'] == "":
-                shutil.move(reposGitTargetFolder + addon['repo'] + "/" + addon['addonFolder'], xDevRepoTargetFolder)
+                shutil.move(reposGitTargetFolder + addon['repo'] + "/" + addon['addonFolder'], xDevRepoTargetFolderTemp)
             elif not addon['addonRepoFolder'] == "":
-                shutil.move(reposGitTargetFolder + addon['repo'] + "/" + addon['addonRepoFolder'], xDevRepoTargetFolder)
+                shutil.move(reposGitTargetFolder + addon['repo'] + "/" + addon['addonRepoFolder'], xDevRepoTargetFolderTemp)
 
 def moveNoGitAddonToXDRepo():
     for addonFolder in os.listdir(addonNoGitTargetFolder):
         addonFolderAbs = addonNoGitTargetFolder + addonFolder
         if os.path.isdir(addonFolderAbs):
-            shutil.move(addonFolderAbs, xDevRepoTargetFolder)
+            shutil.move(addonFolderAbs, xDevRepoTargetFolderTemp)
 
 def getHrefAddon(urlBase,pageStr,extraInfo):
     infoScrap = extraInfo.split(";")
@@ -142,6 +154,34 @@ def getHrefAddon(urlBase,pageStr,extraInfo):
     logging.debug("href constructed: " + href)
 
     return href
+
+# TODO - IMPORTANT fist execute git pull in dest repo and check if is not empty, and AFTER perform push with new num version of repo and new repo .zip
+def copyGettedAddonFolderFilestoRepoFolder():
+    os.chdir(xDevRepoTargetFolder)  # change directory from working dir to dir with files
+
+    logging.info("begin the copy of getted addons folders and contents to target repo folder")
+    for folderName in os.listdir(xDevRepoTargetFolderTemp):  # loop through items in dir
+        pathFolder = xDevRepoTargetFolderTemp + folderName
+        logging.debug("complet fodler item path: " + pathFolder)
+        for fileName in os.listdir(pathFolder):
+            logging.debug("file name:" + fileName)
+            if not os.path.isdir(fileName) and not fileName.startswith("."):
+                fileOrig = pathFolder + "/" + fileName
+                fileDest = xDevRepoTargetFolder + folderName + "/" + fileName
+                # Create folder dest if not exists
+                if not os.path.exists(xDevRepoTargetFolder + folderName):
+                    os.mkdir(xDevRepoTargetFolder + folderName)
+                #os.makedirs(os.path.dirname(xDevRepoTargetFolder + folderName), exist_ok=True)
+                shutil.copy(fileOrig,fileDest)
+                logging.debug("orig file: " + fileOrig + "; des file: " + fileDest)
+                logging.info("copied file: " + fileName)
+            elif not os.path.isdir(fileName):
+                logging.info("ignored (no folder) file: " + fileName)
+
+# creation of general addon.xmlfile of the repo
+def create_addon_xml_file():
+    generatiorAddonXml = Generator(xDevRepoTargetFolder)
+    generatiorAddonXml._generate_addons_files()
 
 def cleanFolder(folder):
     files = glob.glob(folder + '/*')
@@ -169,3 +209,5 @@ def fileToString(filepath):
 
 if __name__ == '__main__':
     createRepoXD()
+    copyGettedAddonFolderFilestoRepoFolder()
+    create_addon_xml_file()

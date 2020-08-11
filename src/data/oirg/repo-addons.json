@@ -1,0 +1,62 @@
+[
+	{
+		"name": "alfa-repo",
+		"repo": "https://github.com/alfa-addon/alfa-repo.git",
+		"folder": "alfa",
+		"git": true
+	},
+	{
+		"name": "picapaujulen",
+		"repo": "https://github.com/picapaujulen/repositorio.git",
+		"folder": "alfa",
+		"git": true
+	},
+	{
+		"name": "tva-resolvers-repo",
+		"repo": "https://github.com/tvaddonsco/tva-resolvers-repo.git",
+		"folder": "tva-resolvers-repo",
+		"git": true
+	},
+	{
+		"name": "jdf76-repository",
+		"repo": "https://github.com/jdf76/repository.git",
+		"folder": "alfa",
+		"git": true
+	},
+	{
+		"name": "palantiraddon-repo",
+		"repo": "https://github.com/Palantiraddon/Repo.git",
+		"folder": "alfa",
+		"git": true
+	},
+	{
+		"name": "tva-release-repo",
+		"repo": "https://github.com/tvaddonsco/tva-release-repo.git",
+		"folder": "tva-release-repo",
+		"git": true
+	},
+	{
+		"name": "lrevlist",
+		"repo": "https://github.com/LReylist/repository.LReylist_Oficial.git",
+		"folder": "lrevlist",
+		"git": true
+	},
+	{
+		"name": "kodiadictos",
+		"repo": "http://kodiadictos.org/kodiadictos",
+		"folder": "kodiadictos",
+		"git": false
+	},
+	{
+		"name": "canalnereo",
+		"repo": "http://canalnereo.com/canalnereo",
+		"folder": "canalnereo",
+		"git": false
+	},
+	{
+		"name": "kodileia",
+		"repo": "https://fuentekodileia.github.io",
+		"folder": "kodileia",
+		"git": false
+	}
+]
